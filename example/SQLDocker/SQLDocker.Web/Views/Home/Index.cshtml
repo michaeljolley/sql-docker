@@ -1,0 +1,19 @@
+﻿@model List<Client>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome!</h1>
+</div>
+
+<table>
+    @foreach(Client client in Model)
+    {
+        <tr>
+            <td>@client.Id.ToString()</td>
+            <td>@client.Name</td>
+        </tr>
+    }
+</table>

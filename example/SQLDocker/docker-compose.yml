@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  sqldocker.web:
+    image: ${DOCKER_REGISTRY-}sqldockerweb
+    container_name: sqldockerweb
+    build:
+      context: .
+      dockerfile: SQLDocker.Web/Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - sqldemo
+  sqldemo:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: sqldemo
+    volumes:
+      - D:/Sources/data:/var/opt/mssql/data
+    ports:
+      - "1433:1433" 
+    environment:
+      SA_PASSWORD: DOTnetConf2019!
+      ACCEPT_EULA: Y
